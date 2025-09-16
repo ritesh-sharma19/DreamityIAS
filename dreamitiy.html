@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+    :root {
+      --primary-blue: #366195;
+      --accent-red: var(--primary-blue);
+      --background: #f7f7f7;
+      --white: #fff;
+      --nav-bg: #fff;
+      --nav-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --nav-radius: 32px;
+      --section-shadow: 0 2px 16px rgba(59, 56, 56, 0.1);
+      --section-radius: 32px;
+      --btn-bg: var(--primary-blue);
+      --btn-accent: var(--accent-red);
+      --btn-text: #fff;
+      --link-hover: var(--accent-red);
+      --card-shadow: 0 2px 16px rgba(44,44,44,0.10);
+    }
+    body {
+      background: var(--background);
+      color: var(--primary-blue);
+    }
+    header nav ul {
+      display: flex;
+      gap: 24px;
+      background: var(--nav-bg);
+      border-radius: var(--nav-radius);
+      box-shadow: var(--nav-shadow);
+      padding: 6px 32px;
+      margin-left: 32px;
+      align-items: center;
+      list-style: none;
+    }
+    header nav ul li {
+      display: flex;
+      align-items: center;
+    }
+    header nav ul li a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.08rem;
+      padding: 8px 16px;
+      border-radius: 18px;
+      transition: background 0.2s, color 0.2s;
+    }
+    header nav ul li a:hover {
+      background: var(--accent-red);
+      color: var(--white);
+    }
+    #sectionNav {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: var(--nav-bg);
+      border-radius: var(--nav-radius);
+      box-shadow: var(--section-shadow);
+      max-width: 600px;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      height: 54px;
+      margin: 0 auto;
+      transition: box-shadow 0.2s;
+    }
+    .section-link {
+      color: var(--primary-blue);
+      font-weight: 400;
+      padding: 8px 18px;
+      border-radius: 18px;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+      font-size: 1rem;
+      margin: 0 2px;
+      display: inline-block;
+    }
+    .section-link.active {
+      background: var(--accent-red);
+      color: var(--white) !important;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(43, 164, 177, 0.1);
+    }
+    .btn {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-weight: 700;
+      border: none;
+      box-shadow: var(--card-shadow);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--btn-accent);
+      color: var(--btn-text);
+    }
+    .btn-outline {
+      background: var(--white);
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-weight: 700;
+      box-shadow: var(--card-shadow);
+      transition: background 0.2s, color 0.2s, border 0.2s;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: var(--primary-blue);
+      color: var(--white);
+      border-color: var(--accent-red);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--primary-blue);
+      font-family: inherit;
+    }
+    h1 span, h2 span, h3 span {
+      color: var(--accent-red);
+    }
+    .card, .hero, aside, .section {
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: var(--card-shadow);
+    }
+    .card {
+      color: var(--primary-blue);
+    }
+    .card .btn, .card .btn-outline {
+      margin-top: 12px;
+    }
+    .topbar {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 8px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      
+    }
+    .contact strong {
+      color: var(--accent-red);
+      border-radius: 50%;
+    }
+    .brand a {
+      color: var(--primary-blue);
+    
+    }
+    .brand a span {
+      color: var(--accent-red);
+    }
+    .faculty-grid .faculty {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      color: var(--primary-blue);
+    }
+    footer {
+      background: #f8f1eb;
+      color: var(--primary-blue);
+    }
+    @media (max-width: 700px) {
+      #sectionNav {
+        max-width: 98vw;
+        padding: 0 8px;
+        height: auto;
+      }
+      .section-link {
+        font-size: 0.95rem;
+        padding: 8px 8px;
+      }
+    }
+  </style>
+  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DREAMITY IAS </title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero {
+      position: relative;
+      background: url('https://images.careerindia.com/webp/img/2025/08/upsc-monthly-planner-template-600-1755962944.jpg') center/cover no-repeat;
+      z-index: 1;
+      transition: background-image 1s ease;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.5); /* white overlay, 0.5 opacity for transparency */
+      z-index: 2;
+    }
+    .hero > * {
+      position: relative;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Section Navigation Bar -->
+  <nav id="sectionNav">
+    <a href="#contact" class="section-link" style="color:#222;font-weight:400;padding:8px 18px;border-radius:18px;transition:background .2s;">Free Mentorship</a>
+    <a href="#courses" class="section-link" style="color:#222;font-weight:400;padding:8px 18px;border-radius:18px;transition:background .2s;">Courses</a>
+    <a href="#faculty" class="section-link" style="color:#222;font-weight:400;padding:8px 18px;border-radius:18px;transition:background .2s;">Faculty</a>
+    <!-- <a href="#download" class="section-link" style="color:#222;font-weight:400;padding:8px 18px;border-radius:18px;transition:background .2s;">Download App</a> -->
+    <a href="#contactus" class="section-link" style="color:#222;font-weight:400;padding:8px 18px;border-radius:18px;transition:background .2s;">Contact Us</a>
+  </nav>
+  <div class="topbar">
+    <div>Complete UPSC 2026 Preparation Strategy</div>
+    <div class="contact">Talk to our experts: <strong style="color: white">8709232806</strong></div>
+  </div>
+
+  <header>
+    <div class="brand">
+  <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="DREAMITY Logo" style="border-radius: 50%;" />
+  <a href="dreamitiy.html" style="font-weight:800;font-size:18px;text-decoration:none;color:#0a0700;letter-spacing:1px;">DREAMITY IAS</a>
+
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">GS Foundation</a></li>
+        <li><a href="#">GS Mains</a></li>
+        <li><a href="#">Optional</a></li>
+        <li><a href="https://www.upscprep.com/csat/?utm_source=chatgpt.com">CSAT</a></li>
+        <li><a href="https://www.currentaffairs.org/?utm_source=chatgpt.com">Current Affairs</a></li>
+        <li><a href="#">Mentorship</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+    <div class="socials">
+      <!-- <a href="https://facebook.com" target="_blank" title="Facebook"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="fb" style="width:20px;height:20px;filter:invert(30%)" /></a>
+      <a href="https://twitter.com" target="_blank" title="Twitter"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg" alt="tw" style="width:20px;height:20px;filter:invert(30%)" /></a>
+      <a href="https://instagram.com" target="_blank" title="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="ig" style="width:20px;height:20px;filter:invert(30%)" /></a>
+      <a href="https://youtube.com" target="_blank" title="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="yt" style="width:20px;height:20px;filter:invert(30%)" /></a> -->
+      <a href="https://www.linkedin.com/company/toptechdevelopers/" target="_blank" title="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="linkedin" style="width:20px;height:20px;filter:invert(50%)" /></a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Crack UPSC with our Expert Guidance</h1>
+      <p>One stop solution for UPSC CSE preparation. HD Live Sessions, Free Study Material, Test Series & Mentorship.</p>
+      <div class="cta">
+        <a class="btn" href="#contact">Get Free Mentorship</a>
+        <a class="btn-outline" href="#courses">All Courses</a>
+      </div>
+      <div class="cards">
+        <div class="card" >Live Classes</div>
+        <div class="card">Answer Writing</div>
+        <div class="card">Mains & Interview</div>
+      </div>
+    </div>
+    <aside class="hero-right">
+      <h3>Get a Callback by our UPSC Expert</h3>
+      <p style="color:var(--muted)">Still in doubt? Share a few details and we'll call you.</p>
+      <form class="card-form" id="contact" autocomplete="off">
+        <label>Name*</label>
+        <input type="text" placeholder="Your name" required id="name" />
+        <div class="error" id="nameError">Please enter your name.</div>
+        <label>Mobile Number*</label>
+        <input type="tel" placeholder="+91 9XXXXXXXXX" required id="mobile" pattern="[0-9]{10}" />
+        <div class="error" id="mobileError">Please enter a valid 10-digit mobile number.</div>
+        <label>Course*</label>
+        <select id="course">
+          <option>GS Foundation</option>
+          <option>GS Mains</option>
+          <option>Optional</option>
+        </select>
+        <button class="btn" type="submit">Call Me Back</button>
+      </form>
+    </aside>
+  </section>
+
+  <section class="section" id="courses">
+  <h2 style="margin-bottom:32px">All Courses</h2>
+  <div style="display:flex;gap:32px;align-items:flex-start;">
+    <aside style="min-width:240px;background:#ffffff;border-radius:18px;padding:32px 0 32px 0;box-shadow:0 2px 16px rgba(44, 44, 44, 0.08);">
+      <div style="display:flex;align-items:center;gap:12px;margin-left:32px;margin-bottom:24px;">
+        <span style="width:32px;height:32px;background:#366195;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+          <img src="https://images-platform.99static.com//KlBLMX8dQrcq6hZGnxf5HSnG29I=/8x543:525x1060/fit-in/500x500/99designs-contests-attachments/123/123360/attachment_123360235" alt="courses" style="width:22px;height:22px;" />
+        </span>
+        <span style="font-size:1.35rem;font-weight:700;color:#222;">All Courses</span>
+      </div>
+      <nav style="display:flex;flex-direction:column;gap:8px;">
+        <a href="#gs-foundation" style="color:#366195;font-weight:700;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;background:rgba(41, 173, 180, 0.08);display:flex;align-items:center;justify-content:space-between;position:relative;">GS Foundation <span style="margin-left:12px;font-size:18px;color:#366195;">&gt;</span></a>
+        <a href="#mentorship" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">Mentorship <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#gs-mains-comprehensive" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">GS Mains Comprehensive <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#gs-mains-modules" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">GS Mains Modules <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#optional" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">Optional <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#csat" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">CSAT <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#prelims-revision" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">Prelims Revision <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#current-affairs" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">Current Affairs <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+        <a href="#test-series" style="color:#222;padding:12px 24px 12px 40px;border-radius:0 24px 24px 0;display:flex;align-items:center;justify-content:space-between;font-weight:500;position:relative;">Test Series <span style="margin-left:12px;font-size:18px;color:#bdbdbd;">&gt;</span></a>
+      </nav>
+    </aside>
+    <div style="flex:1;display:flex;gap:24px;overflow-x:auto;">
+      <!-- GS Foundation Plus Card -->
+      <div id="gs-foundation" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="https://iasorigin.com/wp-content/uploads/2025/05/GS-Batch-Gold.png" alt="GS Foundation Plus" style="width:100%;height:180px;object-fit:cover;border-radius:18px 18px 0 0;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">Live GS Foundation Course 2026 Plus</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 5 Plus</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Live Foundation Class</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Flip Learning Method</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Live Answer Writing Session</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Mains & Interview Preparation</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">PYQ-Based Practice</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="gs foundation.html" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- GS Foundation Card -->
+      <div style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="GS Foundation" style="width:100%;height:180px;object-fit:cover;border-radius:18px 18px 0 0;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">Live GS Foundation Course 2026</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 5</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Live Foundation Class</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Flip Learning Method</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Live Answer Writing Session</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Mains & Interview Preparation</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">PYQ-Based Practice</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mentorship Card -->
+      <div id="mentorship" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="Mentorship Program" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#177c91;margin-bottom:6px;line-height:1.3;">NITYA PRAGATI - 1:1 Mentorship Program for UPSC CSE 2026</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#177c91;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 5</span>
+            <span style="background:#1a395e;color:#fff;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">1:1 Personalized Mentorship</span>
+            <span style="background:#1a395e;color:#fff;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Mains and Prelims Test Series</span>
+            <span style="background:#1a395e;color:#fff;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Weekly Progress Reports</span>
+            <span style="background:#1a395e;color:#fff;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Bi-Weekly Group Sessions</span>
+            <span style="background:#1a395e;color:#fff;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Comprehensive Study Material</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(246,166,35,0.10);cursor:pointer;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- GS Mains Comprehensive Card -->
+      <div id="gs-mains-comprehensive" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="GS Mains Comprehensive" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">GS Mains Comprehensive</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: 5</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 3</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Complete Mains Coverage</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Live Answer Writing Session</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Prelims Revision</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- GS Mains Modules Card -->
+      <div id="gs-mains-modules" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="GS Mains Modules" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">GS Mains Modules</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 3</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">GS3 Bundle</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Live Answer Writing Session</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Optional Card -->
+      <div id="optional" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="Optional" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">Optional</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 1</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">PSIR QEP Plus</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Comprehensive Foundation Building</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- CSAT Card -->
+      <div id="csat" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="CSAT" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">CSAT</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 1</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Comprehensive Foundation Building</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Personalized Study Plans</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Prelims Revision Card -->
+      <div id="prelims-revision" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="Prelims Revision" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">Prelims Revision</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 1</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Comprehensive Foundation Building</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Personalized Study Plans</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Current Affairs Card -->
+      <div id="current-affairs" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="Current Affairs" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">Current Affairs</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 1</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Comprehensive Foundation Building</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Personalized Study Plans</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#3661956;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Test Series Card -->
+      <div id="test-series" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(44,44,44,0.10);width:340px;min-width:340px;display:flex;flex-direction:column;cursor:pointer;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="Test Series" style="width:100%;height:180px;object-fit:cover;" />
+        <div style="padding:18px 18px 12px 18px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:1.15rem;font-weight:700;color:#2d3c4e;margin-bottom:6px;line-height:1.3;">Test Series</div>
+          <div style="color:#222;font-size:1rem;margin-bottom:8px;">Starting Date: </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+            <span style="background:#1a395e;color:#fff;padding:4px 12px;border-radius:8px;font-size:0.95rem;font-weight:600;">Batch 1</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Comprehensive Foundation Building</span>
+            <span style="background:#eaf6fa;color:#1a395e;padding:4px 10px;border-radius:8px;font-size:0.95rem;font-weight:500;">Personalized Study Plans</span>
+          </div>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#366195;font-weight:700;font-size:1.1rem;">Price:₹</span>
+            <a href="#" style="background:#366195;color:#fff;padding:8px 18px;border-radius:8px;font-weight:700;text-decoration:none;">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+  <section class="section">
+  <section id="faculty">
+  <h2>Meet the Team members</h2>
+    <div class="faculty-grid">
+      <div class="faculty">
+        <img src="WhatsApp Image 2025-08-14 at 12.28.35_102c9cbf.jpg" alt="chandan kumar gupta" />
+        <div style="font-weight:700;margin-top:8px">chandan kumar gupta</div>
+        <div style="color:var(--muted);font-size:13px">CEO & Founder <br /> DREAMITY IAS</div>
+      </div>
+      <div class="faculty">
+        <img src="vikram singh shekhawat.jpeg" alt="Vikram singh shekhawat" />
+        <div style="font-weight:700;margin-top:8px">vikram singh shekhawat</div>
+        <div style="color:var(--muted);font-size:13px">designer</div>
+      </div>
+
+       <div class="faculty">
+        <img src="photo_2025-07-31_10-51-18.jpg" alt="Ritesh Sharma" />
+        <div style="font-weight:700;margin-top:8px">Ritesh Sharma</div>
+        <div style="color:var(--muted);font-size:13px"></div>
+      </div>
+      <div class="faculty">
+        <img src="1750324236917.jpeg" alt="" />
+        <div style="font-weight:700;margin-top:8px"></div>
+        <div style="color:var(--muted);font-size:13px"></div>
+      </div>
+      
+      <div class="faculty">
+        <img src="bhawana-img-t99kDSfY.jpg" alt="" />
+        <div style="font-weight:700;margin-top:8px"></div>
+        <div style="color:var(--muted);font-size:13px"></div>
+      </div>
+    </div>
+    <div class="faq">
+      <h2 style="margin-top:32px">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is the duration of the GS Foundation course?</div>
+        <div class="faq-a">The GS Foundation course runs for 12 months with regular live classes and doubt sessions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are study materials included in the course fee?</div>
+        <div class="faq-a">Yes, all study materials and test series are included in the course fee.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I get a demo class before enrolling?</div>
+        <div class="faq-a">Absolutely! Contact us for a free demo class and counseling session.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <section id="download">
+    <!-- <h2>Download the App</h2>
+    <div class="app">
+      <img src="https://via.placeholder.com/160x320?text=App+Preview" alt="app" style="border-radius:8px" />
+      <div>
+        <p style="color:var(--muted)">Get everything UPSC at one place. HD Live Sessions, Free Study Material, Chat for students.</p>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <img src="https://via.placeholder.com/140x44?text=Google+Play" alt="gplay" />
+          <img src="https://via.placeholder.com/140x44?text=App+Store" alt="appstore" />
+        </div>
+      </div>
+    </div>
+    </section> -->
+
+  <section id="contactus"></section>
+  <footer style="background:#cbd1d1fe;padding:40px 0 20px 0;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:32px;">
+      <div style="flex:1;min-width:260px;text-align:center;">
+        <img src="fb44c860-c8eb-475b-9d3f-8d34e4be29da.jpg" alt="DREAMITY IAS Logo" style="width:180px;margin-bottom:18px;" />
+        <div style="font-size:2rem;font-weight:700;color:#2d3c4e;letter-spacing:1px;margin-bottom:8px;">DREAMITY <span style="color:#f6a623;">IAS</span></div>
+        <div style="margin-top:18px;font-size:1.1rem;color:#2d3c4e;line-height:1.6;"></div>
+      </div>
+      <div style="flex:1;min-width:180px;">
+        <div style="font-size:1.5rem;color:#366195;font-weight:600;margin-bottom:10px;">Overview</div>
+        <div style="font-size:1.1rem;color:#2d3c4e;line-height:2;">
+          <div><a href="#" style="color:inherit;text-decoration:none;">Home</a></div>
+          <div><a href="#" style="color:inherit;text-decoration:none;">Privacy Policy</a></div>
+          <div><a href="#" style="color:inherit;text-decoration:none;">Terms & Conditions</a></div>
+          <div><a href="#" style="color:inherit;text-decoration:none;">Refund Policy</a></div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:220px;">
+        <div style="font-size:1.5rem;color:#177c91;font-weight:600;margin-bottom:10px;">Products</div>
+        <div style="font-size:1.1rem;color:#2d3c4e;line-height:2;">
+          <div>GS Foundation</div>
+          <div>GS Mains Comprehensive</div>
+          <div>GS Mains Modules</div>
+          <div>Optional</div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:220px;">
+        <div style="font-size:1.5rem;color:#127485;font-weight:600;margin-bottom:10px;">Follow Us On</div>
+        <div style="display:flex;gap:18px;margin-bottom:18px;">
+          <a href="#" style="color:#2d3c4e;"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" alt="YouTube" style="width:32px;height:32px;" /></a>
+          <a href="#" style="color:#2d3c4e;"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" style="width:32px;height:32px;" /></a>
+          <a href="#" style="color:#2d3c4e;"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" style="width:32px;height:32px;" /></a>
+          <a href="https://www.linkedin.com/company/toptechdevelopers/ " style="color:#2d3c4e;"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" style="width:32px;height:32px;" /></a>
+        </div>
+        <div style="font-size:1.5rem;color:#1293a1;font-weight:600;margin-bottom:10px;">Contact Us</div>
+        <div style="font-size:1.1rem;color:#2d3c4e;line-height:2;">
+          <div><span style="font-size:1.2rem;vertical-align:middle;">&#128222;</span> +91 87092 32806</div>
+          <div><span style="font-size:1.2rem;vertical-align:middle;">&#9993;</span> dremityias125@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <button class="scroll-top" id="scrollTopBtn" title="Scroll to top">&#8679;</button>
+
+  <script src="script.js"></script>
+<script>
+// Section highlight on scroll (active class)
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionLinks = document.querySelectorAll('.section-link');
+  const sections = [
+    {id: 'contact', link: sectionLinks[0]},
+    {id: 'courses', link: sectionLinks[1]},
+    {id: 'faculty', link: sectionLinks[2]},
+
+    {id: 'contactus', link: sectionLinks[3]}
+  ];
+  // Highlights the navigation item for the section currently in view
+  function highlightSection() {
+    let found = false; // Only one nav item should be active at a time
+    for (let i = 0; i < sections.length; i++) {
+      const sec = document.getElementById(sections[i].id); // Get section element by id
+      if (sec) {
+        const rect = sec.getBoundingClientRect(); // Get position of section relative to viewport
+        // Special logic for Contact Us (footer): highlight when its top is near the bottom of the viewport
+        if (sections[i].id === 'contactus') {
+          if (!found && rect.top < window.innerHeight - 120) {
+            sections[i].link.classList.add('active'); // Add highlight class
+            found = true;
+          } else {
+            sections[i].link.classList.remove('active'); // Remove highlight if not in view
+          }
+        } else {
+          // For other sections: highlight if section is near top of viewport
+          if (!found && rect.top < 120 && rect.bottom > 120) {
+            sections[i].link.classList.add('active');
+            found = true;
+          } else {
+            sections[i].link.classList.remove('active');
+          }
+        }
+      }
+    }
+  }
+  // Run highlightSection whenever the user scrolls
+  window.addEventListener('scroll', highlightSection);
+  // Run once on page load
+  highlightSection();
+});
+
+// Sticky nav always visible
+</script>
+<script>
+// Automatic hero background slider
+const heroImages = [
+  'https://images.careerindia.com/webp/img/2025/08/upsc-monthly-planner-template-600-1755962944.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa86e7vKP0zKukJZ_auvxFRjTvvKlGnwyzCA&s',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg6yubaObvTeMrDijBDKqlwlZoUQClgwssqg&s',
+  'https://www.shutterstock.com/image-photo/concentrated-young-female-student-engaged-600nw-2458397479.jpg'
+];
+let heroIndex = 0;
+setInterval(() => {
+  heroIndex = (heroIndex + 1) % heroImages.length;
+  document.querySelector('.hero').style.backgroundImage = `url('${heroImages[heroIndex]}')`;
+}, 5000);
+</script>
+<script>
+// Highlight sidebar link when corresponding card is in view
+const sidebarLinks = document.querySelectorAll('aside nav a');
+const courseCards = [
+  document.getElementById('gs-foundation'),
+  document.getElementById('mentorship'),
+  document.getElementById('gs-mains-comprehensive'),
+  document.getElementById('gs-mains-modules'),
+  document.getElementById('optional'),
+  document.getElementById('csat'),
+  document.getElementById('prelims-revision'),
+  document.getElementById('current-affairs'),
+  document.getElementById('test-series')
+];
+const linkMap = {
+  'gs-foundation': sidebarLinks[0],
+  'mentorship': sidebarLinks[1],
+  'gs-mains-comprehensive': sidebarLinks[2],
+  'gs-mains-modules': sidebarLinks[3],
+  'optional': sidebarLinks[4],
+  'csat': sidebarLinks[5],
+  'prelims-revision': sidebarLinks[6],
+  'current-affairs': sidebarLinks[7],
+  'test-series': sidebarLinks[8]
+};
+function setActive(id) {
+  sidebarLinks.forEach(link => {
+    link.style.background = '';
+    link.style.color = '#222';
+    link.style.fontWeight = '500';
+  });
+  if (linkMap[id]) {
+    linkMap[id].style.background = 'rgba(246,166,35,0.18)';
+    linkMap[id].style.color = '#f6a623';
+    linkMap[id].style.fontWeight = '700';
+  }
+}
+const observer = new IntersectionObserver((entries) => {
+  let maxRatio = 0;
+  let activeId = null;
+  entries.forEach(entry => {
+    if (entry.intersectionRatio > maxRatio) {
+      maxRatio = entry.intersectionRatio;
+      activeId = entry.target.id;
+    }
+  });
+  if (activeId) setActive(activeId);
+}, { root: document.querySelector('.section > div > div[style*="overflow-x:auto"]'), threshold: [0.5, 0.7, 1] });
+courseCards.forEach(card => {
+  if (card) observer.observe(card);
+});
+// Sidebar click scrolls to card
+sidebarLinks.forEach((link, i) => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const card = courseCards[i];
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      setActive(card.id);
+    }
+  });
+});
+</script>
+</body>
+</html>
